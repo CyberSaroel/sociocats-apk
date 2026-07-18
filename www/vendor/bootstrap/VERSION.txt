@@ -1,0 +1,8 @@
+Bootstrap 5.3.3
+https://getbootstrap.com/
+
+Files:
+- bootstrap-grid.min.css — responsive сетка (12 колонок)
+- bootstrap-utilities.min.css — утилиты (flex, отступы, display)
+
+Подключение: index.html

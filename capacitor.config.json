@@ -1,0 +1,19 @@
+{
+  "appId": "com.cybersaroel.sociocats",
+  "appName": "Социокоты",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#ffffff",
+    "allowMixedContent": true
+  },
+  "plugins": {
+    "StatusBar": {
+      "style": "LIGHT",
+      "backgroundColor": "#ffffff",
+      "overlaysWebView": false
+    }
+  },
+  "server": {
+    "cleartext": true
+  }
+}
