@@ -1,1 +1,27 @@
+# Node.js
 node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Android Studio
+android/.gradle/
+android/.idea/
+android/local.properties
+
+# Сборки
+android/app/build/
+android/build/
+android/captures/
+
+# APK / AAB
+*.apk
+*.aab
+
+# Логи
+*.log
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
