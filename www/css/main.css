@@ -499,11 +499,12 @@ button:hover { background: var(--button-hover); }
 
 #version-display {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
-  font-size: 12px;
+  bottom: 6px;
+  right: 8px;
+  font-size: 10px;
   color: var(--text-color);
-  opacity: 0.6;
-  z-index: 999;
+  opacity: 0.45;
+  pointer-events: none;
   user-select: none;
+  z-index: 1001;
 }
