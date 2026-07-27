@@ -21,3 +21,28 @@ if (versionEl) {
 NavigationService.currentScreen = "intro";
 NavigationService.saveCurrentRender(() => showIntroScreen(root));
 showIntroScreen(root);
+
+
+// ===== Автообновление игры (Service Worker) =====
+if ("serviceWorker" in navigator) {
+  let reloading = false;
+
+  // Когда встал новый Service Worker — один раз перезагружаем страницу.
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (reloading) return;
+    reloading = true;
+    window.location.reload();
+  });
+
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./sw.js", { updateViaCache: "none" })
+      .then((reg) => {
+        // Раз в минуту тихо проверяем, не вышла ли новая версия.
+        setInterval(() => reg.update(), 60 * 1000);
+      })
+      .catch((err) => {
+        console.log("Service Worker не зарегистрировался:", err);
+      });
+  });
+}

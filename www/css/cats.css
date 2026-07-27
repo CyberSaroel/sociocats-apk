@@ -1,4 +1,4 @@
-.cell img.cat { width: var(--cat-size); height: var(--cat-size); pointer-events: none; filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.45)); position: relative; z-index: 3; }
+.cell img.cat { width: var(--cat-size); height: var(--cat-size); pointer-events: none; filter: drop-shadow(2px 6px 7px rgba(0, 0, 0, 0.5)); position: relative; z-index: 3; }
 .cell .label { margin-top: 2px; font-weight: bold; position: relative; z-index: 3; }
 .cell[data-mood="-2"] .label,
 .cell[data-mood="-1"] .label { color: #a00; }
@@ -149,6 +149,52 @@
 
 @media (min-width: 769px) {
   .cell img.cat {
-    filter: drop-shadow(8px 5px 12px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(5px 14px 20px rgba(0, 0, 0, 0.55));
   }
+}
+
+/* Золотое свечение довольных котов */
+.cell[data-mood="1"] img.cat {
+  filter: drop-shadow(2px 6px 7px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
+}
+.cell[data-mood="2"] img.cat {
+  filter: drop-shadow(2px 6px 7px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
+}
+
+/* Пульс выбранной клетки */
+@keyframes cellSelectPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6); }
+  50% { box-shadow: 0 0 12px 4px rgba(255, 215, 0, 0.9); }
+}
+#board .cell.selected {
+  animation: cellSelectPulse 1s ease-in-out infinite;
+}
+
+/* Подсветка клетки-цели */
+@keyframes cellTargetGlow {
+  0%, 100% { box-shadow: inset 0 0 0 2px rgba(80, 200, 255, 0.5); }
+  50% { box-shadow: inset 0 0 10px 2px rgba(80, 200, 255, 0.9); }
+}
+#board .cell.target {
+  animation: cellTargetGlow 1.2s ease-in-out infinite;
+}
+
+@keyframes catLand {
+  0% { transform: translateY(-30%) scale(0.8); }
+  60% { transform: translateY(6%) scale(1.08); }
+  100% { transform: translateY(0) scale(1); }
+}
+#board .cell .cat.cat-land {
+  animation: catLand 0.3s ease-out !important;
+  z-index: 6;
+}
+@keyframes moodChange {
+  0% { transform: scale(1) rotateY(0deg); filter: brightness(1); }
+  40% { transform: scale(1.35) rotateY(180deg); filter: brightness(1.6); }
+  60% { transform: scale(1.35) rotateY(180deg); }
+  100% { transform: scale(1) rotateY(360deg); filter: brightness(1); }
+}
+#board .cell .cat.mood-change {
+  animation: moodChange 0.8s ease-out !important;
+  z-index: 6;
 }

@@ -3,6 +3,7 @@ import { fitBoardToViewport } from "./boardLayout.js";
 import { bindCellInteraction } from "../ui/cellInteraction.js";
 
 let skinPath = null;
+let previousMoods = {};
 
 async function loadSkinPath() {
   try {
@@ -26,6 +27,8 @@ export async function renderBoard(container, game, onCell) {
   container.style.setProperty("--rows", board.rows);
   container.style.setProperty("--cols", board.cols);
 
+  const newMoods = {};
+
   for (let r = 0; r < board.rows; r++) {
     for (let c = 0; c < board.cols; c++) {
       const cell = document.createElement("div");
@@ -39,13 +42,30 @@ export async function renderBoard(container, game, onCell) {
 
       if (board.isCat(r, c)) {
         const mood = game.moodAt(r, c);
+        const key = `${r}-${c}`;
+        newMoods[key] = mood;
         cell.dataset.mood = String(mood);
         const img = document.createElement("img");
         img.className = "cat";
         const imgUrl = skinPath.replace("{mood}", mood);
         img.src = imgUrl;
         img.alt = String(mood);
-        
+
+        // Check if cat just moved to this cell (cat-land)
+        const prevMood = previousMoods[key];
+        if (prevMood === undefined) {
+          img.classList.add("cat-land");
+        }
+        // Check if mood changed (mood-change)
+        else if (prevMood !== mood) {
+          img.classList.add("mood-change");
+        }
+
+        // Remove animation classes after animation ends
+        img.addEventListener("animationend", () => {
+          img.classList.remove("cat-land", "mood-change");
+        }, { once: true });
+
         const label = document.createElement("div");
         label.className = "label";
         label.textContent = board.typeAt(r, c);
@@ -59,10 +79,12 @@ export async function renderBoard(container, game, onCell) {
     }
   }
 
+  previousMoods = newMoods;
   fitBoardToViewport(container, board.rows, board.cols);
 }
 
 // Сброс кэша скина (для обновления после смены)
 export function resetSkinCache() {
   skinPath = null;
+  previousMoods = {};
 }
