@@ -3,7 +3,7 @@ import { isCompleted } from "../levels/levelProgress.js";
 import { getBestMoveCount } from "../levels/levelRecords.js";
 import { showGameScreen } from "./gameScreen.js";
 import { showSkinSelect } from "./skinSelect.js";
-import { showThemeSelect } from "./themeSelect.js";
+import { showSettingsScreen } from "./settingsScreen.js";
 import { showVictorySoundSelect } from "./victorySoundSelect.js";
 import { showRecordsScreen } from "./recordsScreen.js";
 import { audioManager } from "../core/audioManager.js";
@@ -32,14 +32,14 @@ export async function showLevelSelect(root) {
   // skinBtn.addEventListener("click", () => showSkinSelect(root));
   // buttonsDiv.appendChild(skinBtn);
 
-  const themeBtn = document.createElement("button");
-  themeBtn.className = "theme-btn";
-  themeBtn.textContent = "🎭 Темы";
-  themeBtn.addEventListener("click", () => {
+  const settingsBtn = document.createElement("button");
+  settingsBtn.className = "theme-btn";
+  settingsBtn.textContent = "⚙️ Настройки";
+  settingsBtn.addEventListener("click", () => {
     audioManager.playSoundEffect("assets/sounds/click.mp3");
-    NavigationService.navigate("themeSelect", () => showThemeSelect(root));
+    NavigationService.navigate("settings", () => showSettingsScreen(root));
   });
-  buttonsDiv.appendChild(themeBtn);
+  buttonsDiv.appendChild(settingsBtn);
 
   const victorySoundBtn = document.createElement("button");
   victorySoundBtn.className = "victory-sound-btn";

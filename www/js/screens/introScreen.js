@@ -1,6 +1,6 @@
 import { showLevelSelect } from "./levelSelect.js";
 import { showRulesScreen } from "./rulesScreen.js";
-import { showThemeSelect } from "./themeSelect.js";
+import { showSettingsScreen } from "./settingsScreen.js";
 import { audioManager, isMusicEnabled, setMusicEnabled, isSfxEnabled, setSfxEnabled, getMusicVolume, setMusicVolume, getSfxVolume, setSfxVolume } from "../core/audioManager.js";
 import NavigationService from "../core/navigation.js";
 
@@ -44,14 +44,14 @@ export function showIntroScreen(root) {
     NavigationService.navigate("rules", () => showRulesScreen(root));
   });
 
-  // Theme button
-  const themeBtn = document.createElement("button");
-  themeBtn.className = "intro-music-btn";
-  themeBtn.textContent = "🎭 Темы";
-  themeBtn.addEventListener("click", () => {
+  // Settings button
+  const settingsBtn = document.createElement("button");
+  settingsBtn.className = "intro-music-btn";
+  settingsBtn.textContent = "⚙️ Настройки";
+  settingsBtn.addEventListener("click", () => {
     audioManager.initAudioContext();
     audioManager.playSoundEffect("assets/sounds/click.mp3");
-    NavigationService.navigate("themeSelect", () => showThemeSelect(root));
+    NavigationService.navigate("settings", () => showSettingsScreen(root));
   });
 
   // Wrapper for music controls
@@ -164,7 +164,7 @@ export function showIntroScreen(root) {
   controls.className = "intro-controls";
   controls.appendChild(startBtn);
   controls.appendChild(rulesBtn);
-  controls.appendChild(themeBtn);
+  controls.appendChild(settingsBtn);
   controls.appendChild(musicWrapper);
 
   // Wrapper for SFX controls

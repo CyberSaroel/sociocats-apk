@@ -108,6 +108,93 @@
 .skin-select-btn:hover:not(:disabled) { background: #5b4cc4; }
 .skin-select-btn:disabled { background: #ccc; cursor: not-allowed; }
 
+/* Settings page styles */
+.settings-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 16px;
+  box-sizing: border-box;
+}
+
+.settings-page h1,
+.settings-page p {
+  margin: 0;
+  max-width: 520px;
+}
+
+.settings-section {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.06) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  padding: 18px 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 480px;
+  margin: 8px auto;
+}
+
+.settings-section h2 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+.settings-section p {
+  font-size: 13px;
+  color: var(--text-color);
+  opacity: 0.75;
+  margin: 0 0 12px 0;
+}
+
+.settings-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.settings-btn:hover {
+  background: var(--primary-hover);
+}
+
+.settings-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.settings-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.settings-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.settings-option label {
+  font-size: 15px;
+  color: var(--text-color);
+  cursor: pointer;
+  flex: 1;
+  text-align: left;
+}
+
 .back-btn { margin: 20px auto; display: block; padding: 10px 20px; font-size: 16px; background: var(--primary-color); color: #fff; border: none; border-radius: 8px; cursor: pointer; }
 .back-btn:hover { background: var(--primary-hover); }
 
